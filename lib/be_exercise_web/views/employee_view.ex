@@ -12,7 +12,8 @@ defmodule ExerciseWeb.EmployeeView do
 
   def render("employee.json", %{employee: employee}) do
     %{id: employee.id,
-      full_name: employee.full_name,
+      first_name: employee.first_name,
+      last_name: employee.last_name,
       job_title: employee.job_title,
       salary: employee.salary,
       country_id: employee.country_id,

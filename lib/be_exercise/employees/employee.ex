@@ -3,11 +3,12 @@ defmodule Exercise.Employees.Employee do
   import Ecto.Changeset
 
   schema "employees" do
-    field :full_name, :string
+    field :first_name, :string
+    field :last_name, :string
     field :job_title, :string
     field :salary, :decimal
-    field :country_id, :decimal
-    field :currency_id, :decimal
+    field :country_id, :integer
+    field :currency_id, :integer
   
     timestamps()
   end
@@ -15,8 +16,8 @@ defmodule Exercise.Employees.Employee do
   @doc false
   def changeset(employee, attrs) do
     employee
-    |> cast(attrs, [:full_name, :job_title, :salary, :country_id, :currency_id])
-    |> validate_required([:full_name, :job_title, :salary])
+    |> cast(attrs, [:first_name, :last_name, :job_title, :salary, :country_id, :currency_id])
+    |> validate_required([:first_name, :last_name, :job_title, :salary])
     |> unique_constraint(:name)
   end
 end
