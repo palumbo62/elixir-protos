@@ -11,6 +11,6 @@ defmodule ExerciseWeb.CountryView do
   end
 
   def render("country.json", %{country: country}) do
-    %{id: country.id, name: country.name, code: country.code}
+    %{currency_id: country.currency_id, name: country.name, code: country.code}
   end
 end

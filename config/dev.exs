@@ -4,7 +4,7 @@ use Mix.Config
 config :be_exercise, Exercise.Repo,
   username: System.get_env("POSTGRES_USER", "postgres"),
   password: System.get_env("POSTGRES_PASSWORD", "Dur@ngler036264"),
-  database: System.get_env("POSTGRES_DB", "exercise-pbo"),
+  database: System.get_env("POSTGRES_DB", "exercise"),
   hostname: System.get_env("POSTGRES_HOST", "localhost"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
