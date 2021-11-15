@@ -21,26 +21,26 @@ alias Exercise.Countries
 # Canadian Dollar (CAD)
 # Swiss Franc (CHF)
 # Japanese Yen (JPY)
-# currency_data = [
-#   ["European Euro", "EUR", "€"],
-#   ["United Kingdom Pound Sterling", "GBP", "£"],
-#   ["Australian Dollar", "AUD", "$"],
-#   ["New Zealand Dollar", "NZD", "$"],
-#   ["United States Dollar", "USD", "$"],
-#   ["Canadian Dollar", "CAD", "$"],
-#   ["Swiss Franc", "CHF", "¥"],
-#   ["Japanese Yen", "JPY", "CHF"]
-# ]
+currency_data = [
+  ["European Euro", "EUR", "€"],
+  ["United Kingdom Pound Sterling", "GBP", "£"],
+  ["Australian Dollar", "AUD", "$"],
+  ["New Zealand Dollar", "NZD", "$"],
+  ["United States Dollar", "USD", "$"],
+  ["Canadian Dollar", "CAD", "$"],
+  ["Swiss Franc", "CHF", "¥"],
+  ["Japanese Yen", "JPY", "CHF"]
+]
 
-# for currency <- currency_data do
-#   [name, code, symbol] = currency
+for currency <- currency_data do
+  [name, code, symbol] = currency
 
-#   {:ok, _currency} = Countries.create_currency(%{
-#     name: name,
-#     code: code,
-#     symbol: symbol
-#   })
-# end
+  {:ok, _currency} = Countries.create_currency(%{
+    name: name,
+    code: code,
+    symbol: symbol
+  })
+end
 
 # Seed the 12 supported countries
 country_data = [
