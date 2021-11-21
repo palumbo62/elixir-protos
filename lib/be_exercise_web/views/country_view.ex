@@ -3,6 +3,7 @@ defmodule ExerciseWeb.CountryView do
   alias ExerciseWeb.CountryView
 
   def render("index.json", %{countries: countries}) do
+    IO.inspect countries, label: "@@@@@ COUNTRIES"
     %{data: render_many(countries, CountryView, "country.json")}
   end
 

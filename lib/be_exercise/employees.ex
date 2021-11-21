@@ -55,6 +55,12 @@ defmodule Exercise.Employees do
     |> Repo.insert()
   end
 
+  def create_employee!(attrs \\ %{}) do
+    %Employee{}
+    |> Employee.changeset(attrs)
+    |> Repo.insert!()
+  end
+
   @doc """
   Updates a employee.
 

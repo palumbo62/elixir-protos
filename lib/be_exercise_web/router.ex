@@ -11,6 +11,16 @@ defmodule ExerciseWeb.Router do
     resources "/countries", CountryController, except: [:new, :edit] 
     resources "/employees", EmployeeController, except: [:new, :edit]
   end
+  
+  pipeline :admin do
+    plug :accepts, ["json"]
+  end
+
+  scope "/metrics", ExerciseWeb do
+    pipe_through :admin
+    resources "/salary_countries", SalaryCountryController, only: [:index]
+    resources "/salary_jobtitles", SalaryJobtitleController, only: [:index]
+  end    
 
   # Enables LiveDashboard only for development
   #

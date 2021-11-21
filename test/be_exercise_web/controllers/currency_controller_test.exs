@@ -9,11 +9,13 @@ defmodule ExerciseWeb.CurrencyControllerTest do
     name: "some name",
     symbol: "some symbol"
   }
+
   @update_attrs %{
     code: "some updated code",
     name: "some updated name",
     symbol: "some updated symbol"
   }
+  
   @invalid_attrs %{code: nil, name: nil, symbol: nil}
 
   def fixture(:currency) do

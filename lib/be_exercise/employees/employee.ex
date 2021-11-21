@@ -18,6 +18,5 @@ defmodule Exercise.Employees.Employee do
     employee
     |> cast(attrs, [:first_name, :last_name, :job_title, :salary, :country_id, :currency_id])
     |> validate_required([:first_name, :last_name, :job_title, :salary])
-    |> unique_constraint(:name)
   end
 end

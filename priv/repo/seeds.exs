@@ -60,9 +60,6 @@ country_data = [
 
 for country <- country_data do
   [name, code, currency_code] = country
-  IO.inspect name
-  IO.inspect code
-  IO.inspect currency_code
   currency = Countries.get_currency_by_code!(currency_code)
 
   {:ok, _country} = Countries.create_country(%{

@@ -55,7 +55,7 @@ defmodule EmployeeData do
 
   # Recursive function pair used to create the employee data set which will
   # populate the database with employee records.
-  def create_emp_dataset(emp_dataset, fnms, lnms, jts, sals, cdta, n) when n <= 1 do
+  def create_emp_dataset(emp_dataset, fnms, lnms, jts, cdta, n) when n <= 1 do
     [ctryid, currid] = Enum.random(cdta)
     
     employee =  %{country_id: ctryid, 
@@ -63,12 +63,12 @@ defmodule EmployeeData do
                   first_name: Enum.random(fnms), 
                   last_name: Enum.random(lnms), 
                   job_title: Enum.random(jts), 
-                  salary: Enum.random(sals) * 1000}
+                  salary: Enum.random(20000..125000)}
 
     MapSet.put(emp_dataset, employee)
   end
 
-  def create_emp_dataset(emp_dataset, fnms, lnms, jts, sals, cdta, n) do
+  def create_emp_dataset(emp_dataset, fnms, lnms, jts, cdta, n) do
     [ctryid, currid] = Enum.random(cdta)
     
     employee =  %{country_id: ctryid, 
@@ -76,10 +76,10 @@ defmodule EmployeeData do
                   first_name: Enum.random(fnms), 
                   last_name: Enum.random(lnms), 
                   job_title: Enum.random(jts), 
-                  salary: Enum.random(sals) * 1000}
+                  salary: Enum.random(20000..125000)}
 
     emp_dataset = MapSet.put(emp_dataset, employee)
-    create_emp_dataset(emp_dataset, fnms, lnms, jts, sals, cdta, n - 1)
+    create_emp_dataset(emp_dataset, fnms, lnms, jts, cdta, n - 1)
   end
 
   # Function to generate the 10000 employee records to populate the database
@@ -89,17 +89,13 @@ defmodule EmployeeData do
     job_titles = EmployeeData.generate_job_titles
     country_data = EmployeeData.generate_countries_currencies
 
-    # List of salaries * 1000 below
-    salaries = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]       
-              
     # Create 10,000 employee records by matching a first name to a last name,
     # a random job title, a salary, and country of citizens ship.  
     # For salary we will generate a range of 10,000 to 100,000 in non-descript values
 
     # Use a recusrive function to select random values from the lists of employee data
     # to generate unique employee records.  Use a MapSet to filter the duplicates
-    create_emp_dataset(emp_dataset, first_names, last_names, job_titles, salaries, 
-                       country_data, n)
+    create_emp_dataset(emp_dataset, first_names, last_names, job_titles, country_data, n)
 
   end
 end
