@@ -14,6 +14,7 @@ defmodule ExerciseWeb.EmployeeView do
     %{id: employee.id,
       first_name: employee.first_name,
       last_name: employee.last_name,
+      emp_id: employee.emp_id,
       job_title: employee.job_title,
       salary: employee.salary,
       country_id: employee.country_id,

@@ -62,6 +62,7 @@ defmodule EmployeeData do
                   currency_id: currid, 
                   first_name: Enum.random(fnms), 
                   last_name: Enum.random(lnms), 
+                  emp_id: n,
                   job_title: Enum.random(jts), 
                   salary: Enum.random(20000..125000)}
 
@@ -74,7 +75,8 @@ defmodule EmployeeData do
     employee =  %{country_id: ctryid, 
                   currency_id: currid, 
                   first_name: Enum.random(fnms), 
-                  last_name: Enum.random(lnms), 
+                  last_name: Enum.random(lnms),
+                  emp_id: n, 
                   job_title: Enum.random(jts), 
                   salary: Enum.random(20000..125000)}
 
@@ -107,6 +109,7 @@ emp_dataset = EmployeeData.generate_employee_data(emp_dataset, 10000)
 # Add the individual employee records to the DB
 for emp <- emp_dataset do
   IO.inspect(emp)
+  # Check for duplicates, if none add - there are no unique keys
   Exercise.Employees.create_employee!(emp) 
 end
 
