@@ -49,17 +49,16 @@ defmodule EmployeeData do
           
     # Extract just the country and currency ids
     for c <- countries do
-      [c.id, c.currency_id]
+      [c.id]
     end
   end
 
   # Recursive function pair used to create the employee data set which will
   # populate the database with employee records.
   def create_emp_dataset(emp_dataset, fnms, lnms, jts, cdta, n) when n <= 1 do
-    [ctryid, currid] = Enum.random(cdta)
+    [ctryid] = Enum.random(cdta)
     
     employee =  %{country_id: ctryid, 
-                  currency_id: currid, 
                   first_name: Enum.random(fnms), 
                   last_name: Enum.random(lnms), 
                   emp_id: n,
@@ -70,10 +69,9 @@ defmodule EmployeeData do
   end
 
   def create_emp_dataset(emp_dataset, fnms, lnms, jts, cdta, n) do
-    [ctryid, currid] = Enum.random(cdta)
+    [ctryid] = Enum.random(cdta)
     
     employee =  %{country_id: ctryid, 
-                  currency_id: currid, 
                   first_name: Enum.random(fnms), 
                   last_name: Enum.random(lnms),
                   emp_id: n, 

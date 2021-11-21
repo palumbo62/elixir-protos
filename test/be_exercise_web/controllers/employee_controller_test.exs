@@ -8,19 +8,29 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     country_id: 2,
     currency_id: 2,
     first_name: "some first name",
-    last_name: "some last name"
+    last_name: "some last name",
+    emp_id: 100,
     job_title: "some job_title",
-    salary: "120.5"
+    salary: 120.5
   }
   @update_attrs %{
     country_id: 3,
     currency_id: 3,
     first_name: "some updated first_name",
-    last_name: "some last name"
+    last_name: "some last name",
+    emp_id: 200,
     job_title: "some updated job_title",
-    salary: "456.7"
+    salary: 1456.7
   }
-  @invalid_attrs %{country_id: nil, currency_id: nil, first_name: nil, last_name: nil, job_title: nil, salary: nil}
+  @invalid_attrs %{
+    country_id: nil, 
+    currency_id: nil, 
+    first_name: nil, 
+    last_name: nil, 
+    emp_id: nil,
+    job_title: nil, 
+    salary: nil
+  }
 
   def fixture(:employee) do
     {:ok, employee} = Employees.create_employee(@create_attrs)
@@ -51,8 +61,9 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "currency_id" => 2,
                "first_name" => "some first_name",
                "last_name" => "some last_name",
+               "emp_id" => 100,
                "job_title" => "some job_title",
-               "salary" => "120.5"
+               "salary" => 120.5
              } = json_response(conn, 200)["data"]
     end
 
@@ -71,14 +82,17 @@ defmodule ExerciseWeb.EmployeeControllerTest do
 
       conn = get(conn, Routes.employee_path(conn, :show, id))
 
+      IO.inspect(json_response(conn, 200)["data"])
+      
       assert %{
                "id" => id,
                "country_id" => 3,
                "currency_id" => 3,
                "first_name" => "some updated first_name",
                "last_name" => "some updated last_name",
+               "emp_id" => 200,
                "job_title" => "some updated job_title",
-               "salary" => "456.7"
+               "salary" => 1456.7
              } = json_response(conn, 200)["data"]
     end
 

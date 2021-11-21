@@ -35,7 +35,8 @@ defmodule Exercise.Employees do
       ** (Ecto.NoResultsError)
 
   """
-  def get_employee!(id), do: Repo.get!(Employee, id)
+
+  def get_employee(id), do: Repo.get!(Employee, id)
 
   @doc """
   Creates a employee.
@@ -77,6 +78,12 @@ defmodule Exercise.Employees do
     employee
     |> Employee.changeset(attrs)
     |> Repo.update()
+  end
+
+ def update_employee!(%Employee{} = employee, attrs) do
+    employee
+    |> Employee.changeset(attrs)
+    |> Repo.update!()
   end
 
   @doc """
