@@ -17,7 +17,7 @@ defmodule ExerciseWeb.EmployeeView do
       emp_id: employee.emp_id,
       job_title: employee.job_title,
       salary: employee.salary,
-      country_id: employee.country_id,
-      currency_id: employee.currency_id}
+      country_id: employee.country_id
+    }
   end
 end
