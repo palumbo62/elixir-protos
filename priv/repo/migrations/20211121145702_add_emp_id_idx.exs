@@ -3,7 +3,7 @@ defmodule Exercise.Repo.Migrations.AddEmpIdIdx do
 
   def change do
     alter table("employees") do
-      add :emp_id, :integer
+      add :emp_id, :bigint
     end
     create unique_index(:employees, [:emp_id])
   end
