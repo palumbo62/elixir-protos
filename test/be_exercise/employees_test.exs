@@ -6,9 +6,32 @@ defmodule Exercise.EmployeesTest do
   describe "employees" do
     alias Exercise.Employees.Employee
 
-    @valid_attrs %{country_id: 1, currency_id: 2, first_name: "some first_name", job_title: "some job_title", last_name: "some last_name", salary: "120.5"}
-    @update_attrs %{country_id: 1, currency_id: 2, first_name: "some updated first_name", job_title: "some updated job_title", last_name: "some updated last_name", salary: "456.7"}
-    @invalid_attrs %{country_id: nil, currency_id: nil, first_name: nil, job_title: nil, last_name: nil, salary: nil}
+    @valid_attrs %{
+      country_id: 1, 
+      currency_id: 2, 
+      first_name: "some first_name", 
+      last_name: "some last_name", 
+      job_title: "some job_title", 
+      salary: "120.5"
+    }
+
+    @update_attrs %{
+      country_id: 1, 
+      currency_id: 2, 
+      first_name: "some updated first_name", 
+      last_name: "some updated last_name", 
+      job_title: "some updated job_title", 
+      salary: "456.7"
+    }
+
+    @invalid_attrs %{
+      country_id: nil, 
+      currency_id: nil, 
+      first_name: nil, 
+      last_name: nil, 
+      job_title: nil, 
+      salary: nil
+    }
 
     def employee_fixture(attrs \\ %{}) do
       {:ok, employee} =
@@ -34,8 +57,8 @@ defmodule Exercise.EmployeesTest do
       assert employee.country_id == 2
       assert employee.currency_id == 2
       assert employee.first_name == "some first_name"
-      assert employee.job_title == "some job_title"
       assert employee.last_name == "some last_name"
+      assert employee.job_title == "some job_title"
       assert employee.salary == Decimal.new("120.5")
     end
 
@@ -49,8 +72,8 @@ defmodule Exercise.EmployeesTest do
       assert employee.country_id == 3
       assert employee.currency_id == 3
       assert employee.first_name == "some updated first_name"
-      assert employee.job_title == "some updated job_title"
       assert employee.last_name == "some updated last_name"
+      assert employee.job_title == "some updated job_title"
       assert employee.salary == Decimal.new("456.7")
     end
 

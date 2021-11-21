@@ -6,7 +6,10 @@ defmodule Exercise.CountriesTest do
   describe "currencies" do
     alias Exercise.Countries.Currency
 
-    @valid_attrs %{code: "some code", name: "some name", symbol: "some symbol"}
+    @valid_attrs %{
+      code: "some code", 
+      name: "some name", 
+      symbol: "some symbol"}
     @update_attrs %{
       code: "some updated code",
       name: "some updated name",
@@ -73,9 +76,18 @@ defmodule Exercise.CountriesTest do
   describe "countries" do
     alias Exercise.Countries.Country
 
-    @valid_attrs %{code: "some code", name: "some name"}
-    @update_attrs %{code: "some updated code", name: "some updated name"}
-    @invalid_attrs %{code: nil, name: nil}
+    @valid_attrs %{
+      code: "some code", 
+      name: "some name"
+    }
+    @update_attrs %{
+      code: "some updated code", 
+      name: "some updated name"
+    }
+    @invalid_attrs %{
+      code: nil, 
+      name: nil
+    }
 
     def country_fixture(attrs \\ %{}) do
       {:ok, country} =

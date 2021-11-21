@@ -7,20 +7,20 @@ defmodule ExerciseWeb.EmployeeControllerTest do
   @create_attrs %{
     country_id: 2,
     currency_id: 2,
-    full_name: "some full_name",
-    job_titile: "some job_titile",
-    salary: "120.5",
-    string: "some string"
+    first_name: "some first name",
+    last_name: "some last name"
+    job_title: "some job_title",
+    salary: "120.5"
   }
   @update_attrs %{
     country_id: 3,
-    currency_id: 433,
-    full_name: "some updated full_name",
-    job_titile: "some updated job_titile",
-    salary: "456.7",
-    string: "some updated string"
+    currency_id: 3,
+    first_name: "some updated first_name",
+    last_name: "some last name"
+    job_title: "some updated job_title",
+    salary: "456.7"
   }
-  @invalid_attrs %{country_id: nil, currency_id: nil, full_name: nil, job_titile: nil, salary: nil, string: nil}
+  @invalid_attrs %{country_id: nil, currency_id: nil, first_name: nil, last_name: nil, job_title: nil, salary: nil}
 
   def fixture(:employee) do
     {:ok, employee} = Employees.create_employee(@create_attrs)
@@ -49,10 +49,10 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "id" => id,
                "country_id" => 2,
                "currency_id" => 2,
-               "full_name" => "some full_name",
-               "job_titile" => "some job_titile",
-               "salary" => "120.5",
-               "string" => "some string"
+               "first_name" => "some first_name",
+               "last_name" => "some last_name",
+               "job_title" => "some job_title",
+               "salary" => "120.5"
              } = json_response(conn, 200)["data"]
     end
 
@@ -75,10 +75,10 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "id" => id,
                "country_id" => 3,
                "currency_id" => 3,
-               "full_name" => "some updated full_name",
-               "job_titile" => "some updated job_titile",
-               "salary" => "456.7",
-               "string" => "some updated string"
+               "first_name" => "some updated first_name",
+               "last_name" => "some updated last_name",
+               "job_title" => "some updated job_title",
+               "salary" => "456.7"
              } = json_response(conn, 200)["data"]
     end
 
