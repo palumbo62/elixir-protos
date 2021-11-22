@@ -22,7 +22,7 @@ defmodule Exercise.Metrics do
               join: c in "countries", 
               join: cr in "currencies",
               on: e.country_id == c.id,
-              on: e.currency_id == cr.id,    
+              on: c.currency_id == cr.id,    
               select: %Exercise.Metrics.SalaryJobtitle{
                         jobtitle: e.job_title, 
                         avg: avg(e.salary), 
@@ -64,7 +64,7 @@ defmodule Exercise.Metrics do
               join: c in "countries", 
               join: cr in "currencies",
               on: e.country_id == c.id,
-              on: e.currency_id == cr.id,    
+              on: c.currency_id == cr.id,    
               select: %Exercise.Metrics.SalaryCountry{code: c.code, 
                         crcode: cr.code, 
                         avg: avg(e.salary), 
