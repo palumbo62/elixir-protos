@@ -1,16 +1,16 @@
 defmodule Exercise.MetricsTest do
   use Exercise.DataCase
 
-  alias Exercise.Metrics
+  #alias Exercise.Metrics
 
   describe "salary_jobtitles" do
-    alias Exercise.Metrics.SalaryJobtitle
+    #alias Exercise.Metrics.SalaryJobtitle
 
     # Placeholder
   end
 
   describe "salary_countries" do
-    alias Exercise.Metrics.SalaryCountry
+    #alias Exercise.Metrics.SalaryCountry
 
     # Placeholder
   end
