@@ -16,7 +16,6 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     code: "some code", 
     name: "some name",
     symbol: "&",
-    currency_id: 1
   }
 
   @create_attrs %{
@@ -52,12 +51,8 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
     attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
 
-    IO.inspect(attrs, label: "CURR ATTRS")      
-
     {:ok, country} = Countries.create_country(attrs)
     attrs = Map.put(@create_attrs, :country_id, country.id)
-
-    IO.inspect(attrs, label: "CNTRY ATTRS")
 
     {:ok, employee} = Employees.create_employee(attrs)
     employee
@@ -78,7 +73,6 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     test "renders employee when data is valid", %{conn: conn} do
       {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
       attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
-      IO.inspect(attrs, label: "CURR ATTRS")      
       
       {:ok, country} = Countries.create_country(attrs)
       attrs = Map.put(@create_attrs, :country_id, country.id)
@@ -124,8 +118,6 @@ defmodule ExerciseWeb.EmployeeControllerTest do
       assert salary == "1456.7"
       assert emp_id == 200
       assert employee.country_id == country_id
-
-      IO.inspect(json_response(conn, 200)["data"])
     end
 
     test "renders errors when data is invalid", %{conn: conn, employee: employee} do
