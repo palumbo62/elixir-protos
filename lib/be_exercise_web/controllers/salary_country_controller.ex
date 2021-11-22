@@ -7,7 +7,6 @@ defmodule ExerciseWeb.SalaryCountryController do
 
   def index(conn, _params) do
     salary_countries = Metrics.list_salary_countries()
-    IO.inspect(salary_countries, label: "COUNTRY AVG SALARIES: ")
     render(conn, "index.json", salary_countries: salary_countries)
   end
 
