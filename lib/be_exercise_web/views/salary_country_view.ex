@@ -3,7 +3,6 @@ defmodule ExerciseWeb.SalaryCountryView do
   alias ExerciseWeb.SalaryCountryView
 
   def render("index.json", %{salary_countries: salary_countries}) do
-    IO.inspect salary_countries, label: "@@@@@ SALARIES"
     %{data: render_many(salary_countries, SalaryCountryView, "salary_country.json")}
   end
 

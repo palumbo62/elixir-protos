@@ -3,7 +3,6 @@ defmodule ExerciseWeb.SalaryJobtitleView do
   alias ExerciseWeb.SalaryJobtitleView
 
   def render("index.json", %{salary_jobtitles: salary_jobtitles}) do
-    IO.inspect salary_jobtitles, label: "@@@@@ JOBTITLES"    
     %{data: render_many(salary_jobtitles, SalaryJobtitleView, "salary_jobtitle.json")}
   end
 
