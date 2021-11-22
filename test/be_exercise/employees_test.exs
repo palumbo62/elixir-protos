@@ -1,17 +1,21 @@
 defmodule Exercise.EmployeesTest do
   use Exercise.DataCase
  
-  alias Exercise.Employees
-
   describe "employees" do
+    alias Exercise.Employees
     alias Exercise.Employees.Employee
     alias Exercise.Countries
 
     @cntry_valid_attrs %{
       code: "some code", 
-      name: "some name"
+      name: "some name",
+      currency_id: 1
     }
-    
+    @curr_valid_attrs %{
+      code: "some code", 
+      name: "some name", 
+      symbol: "$"}
+ 
     @valid_attrs %{
       country_id: 1, 
       first_name: "some first_name", 
@@ -39,19 +43,16 @@ defmodule Exercise.EmployeesTest do
       emp_id: nil
     }
 
-    def employee_fixture(_attrs \\ %{}) do
-      {:ok, country} =
-         Countries.create_country(@cntry_valid_attrs)
-      Countries.get_country!(country.id)
+    def employee_fixture(attrs \\ %{}) do
+      {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
+      attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
 
+      {:ok, country} = Countries.create_country(attrs)
       attrs = Map.put(@valid_attrs, :country_id, country.id)
 
-     {:ok, employee} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Employees.create_employee()
+      {:ok, employee} = Employees.create_employee(attrs)
 
-        employee  
+      employee  
     end
 
     test "list_employees/0 returns all employees" do
