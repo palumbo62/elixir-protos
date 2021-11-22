@@ -37,6 +37,7 @@ defmodule ExerciseWeb.CurrencyControllerTest do
   describe "create currency" do
     test "renders currency when data is valid", %{conn: conn} do
       conn = post(conn, Routes.currency_path(conn, :create), currency: @create_attrs)
+
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.currency_path(conn, :show, id))
@@ -80,7 +81,7 @@ defmodule ExerciseWeb.CurrencyControllerTest do
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
-
+  
   describe "delete currency" do
     setup [:create_currency]
 
