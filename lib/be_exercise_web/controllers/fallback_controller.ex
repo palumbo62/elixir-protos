@@ -8,7 +8,6 @@ defmodule ExerciseWeb.FallbackController do
 
   # This clause handles errors returned by Ecto's insert/update/delete.
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
-    IO.inspect(changeset, label: "CHANGESET: ")
     conn
     |> put_status(:unprocessable_entity)
     |> put_view(ExerciseWeb.ChangesetView)
@@ -16,8 +15,7 @@ defmodule ExerciseWeb.FallbackController do
   end
 
   # This clause is an example of how to handle resources that cannot be found.
-  def call(conn, {:error, :not_found} = changeset) do
-    IO.inspect(changeset, label: "NOT_FOUND: ")
+  def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
     |> put_view(ExerciseWeb.ErrorView)
