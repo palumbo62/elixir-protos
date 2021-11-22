@@ -4,18 +4,28 @@ defmodule ExerciseWeb.CountryControllerTest do
   alias Exercise.Countries
   alias Exercise.Countries.Country
 
-  @create_attrs %{
+  @cntry_valid_attrs %{
     code: "some code",
-    name: "some name"
+    name: "some name",
+    currency_id: 1
   }
-  @update_attrs %{
+  @cntry_update_attrs %{
     code: "some updated code",
-    name: "some updated name"
+    name: "some updated name",
   }
   @invalid_attrs %{code: nil, name: nil}
+  
+  @curr_valid_attrs %{
+    code: "some code", 
+    name: "some name", 
+    symbol: "some symbol"}
 
   def fixture(:country) do
-    {:ok, country} = Countries.create_country(@create_attrs)
+    {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
+    attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
+
+    {:ok, country} = Countries.create_country(attrs)
+
     country
   end
 
@@ -32,16 +42,18 @@ defmodule ExerciseWeb.CountryControllerTest do
 
   describe "create country" do
     test "renders country when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.country_path(conn, :create), country: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
+      attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
+
+      conn = post(conn, Routes.country_path(conn, :create), country: attrs)
+      assert %{"id" => id, "name" => name, "code" => code, 
+               "currency_id" => currency_id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.country_path(conn, :show, id))
 
-      assert %{
-               "id" => ^id,
-               "code" => "some code",
-               "name" => "some name"
-             } = json_response(conn, 200)["data"]
+      assert name == "some name"
+      assert code == "some code"
+      assert currency_id == currency.id
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -54,16 +66,15 @@ defmodule ExerciseWeb.CountryControllerTest do
     setup [:create_country]
 
     test "renders country when data is valid", %{conn: conn, country: %Country{id: id} = country} do
-      conn = put(conn, Routes.country_path(conn, :update, country), country: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+      conn = put(conn, Routes.country_path(conn, :update, country), country: @cntry_update_attrs)
+      assert %{"name" => name, "code" => code,
+               "currency_id" => currency_id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.country_path(conn, :show, id))
 
-      assert %{
-               "id" => ^id,
-               "code" => "some updated code",
-               "name" => "some updated name"
-             } = json_response(conn, 200)["data"]
+      assert name == "some updated name"
+      assert code == "some updated code"
+      assert currency_id = country.currency_id
     end
 
     test "renders errors when data is invalid", %{conn: conn, country: country} do
