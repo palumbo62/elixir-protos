@@ -6,21 +6,21 @@ defmodule Exercise.CountriesTest do
   describe "currencies" do
     alias Exercise.Countries.Currency
 
-    @valid_attrs %{
+    @curr_valid_attrs %{
       code: "some code", 
       name: "some name", 
       symbol: "some symbol"}
-    @update_attrs %{
+    @curr_update_attrs %{
       code: "some updated code",
       name: "some updated name",
       symbol: "some updated symbol"
     }
-    @invalid_attrs %{code: nil, name: nil, symbol: nil}
+    @curr_invalid_attrs %{code: nil, name: nil, symbol: nil}
 
     def currency_fixture(attrs \\ %{}) do
       {:ok, currency} =
         attrs
-        |> Enum.into(@valid_attrs)
+        |> Enum.into(@curr_valid_attrs)
         |> Countries.create_currency()
 
       currency
@@ -37,19 +37,19 @@ defmodule Exercise.CountriesTest do
     end
 
     test "create_currency/1 with valid data creates a currency" do
-      assert {:ok, %Currency{} = currency} = Countries.create_currency(@valid_attrs)
+      assert {:ok, %Currency{} = currency} = Countries.create_currency(@curr_valid_attrs)
       assert currency.code == "some code"
       assert currency.name == "some name"
       assert currency.symbol == "some symbol"
     end
 
     test "create_currency/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Countries.create_currency(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Countries.create_currency(@curr_invalid_attrs)
     end
 
     test "update_currency/2 with valid data updates the currency" do
       currency = currency_fixture()
-      assert {:ok, %Currency{} = currency} = Countries.update_currency(currency, @update_attrs)
+      assert {:ok, %Currency{} = currency} = Countries.update_currency(currency, @curr_update_attrs)
       assert currency.code == "some updated code"
       assert currency.name == "some updated name"
       assert currency.symbol == "some updated symbol"
@@ -57,7 +57,7 @@ defmodule Exercise.CountriesTest do
 
     test "update_currency/2 with invalid data returns error changeset" do
       currency = currency_fixture()
-      assert {:error, %Ecto.Changeset{}} = Countries.update_currency(currency, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Countries.update_currency(currency, @curr_invalid_attrs)
       assert currency == Countries.get_currency!(currency.id)
     end
 
@@ -78,23 +78,25 @@ defmodule Exercise.CountriesTest do
 
     @valid_attrs %{
       code: "some code", 
-      name: "some name"
+      name: "some name",
+      currency_id: 1
     }
     @update_attrs %{
       code: "some updated code", 
-      name: "some updated name"
+      name: "some updated name",
     }
     @invalid_attrs %{
       code: nil, 
-      name: nil
+      name: nil,
     }
 
     def country_fixture(attrs \\ %{}) do
+      currency = currency_fixture()
+      attrs = Map.put(@valid_attrs, :currency_id, currency.id)
+
       {:ok, country} =
         attrs
-        |> Enum.into(@valid_attrs)
         |> Countries.create_country()
-
       country
     end
 
@@ -109,7 +111,7 @@ defmodule Exercise.CountriesTest do
     end
 
     test "create_country/1 with valid data creates a country" do
-      assert {:ok, %Country{} = country} = Countries.create_country(@valid_attrs)
+      country = country_fixture()
       assert country.code == "some code"
       assert country.name == "some name"
     end
