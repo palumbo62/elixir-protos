@@ -56,7 +56,46 @@ defmodule ExerciseWeb.CurrencyControllerTest do
     end
   end
 
-    defp create_currency(_) do
+  describe "update currency" do
+    setup [:create_currency]
+
+    test "renders currency when data is valid", %{
+      conn: conn,
+      currency: %Currency{id: id} = currency
+    } do
+      conn = put(conn, Routes.currency_path(conn, :update, currency), currency: @update_attrs)
+      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+
+      conn = get(conn, Routes.currency_path(conn, :show, id))
+
+      assert %{
+               "id" => ^id,
+               "code" => "some updated code",
+               "name" => "some updated name",
+               "symbol" => "some updated symbol"
+             } = json_response(conn, 200)["data"]
+    end
+
+    test "renders errors when data is invalid", %{conn: conn, currency: currency} do
+      conn = put(conn, Routes.currency_path(conn, :update, currency), currency: @invalid_attrs)
+      assert json_response(conn, 422)["errors"] != %{}
+    end
+  end
+  
+  describe "delete currency" do
+    setup [:create_currency]
+
+    test "deletes chosen currency", %{conn: conn, currency: currency} do
+      conn = delete(conn, Routes.currency_path(conn, :delete, currency))
+      assert response(conn, 204)
+
+      assert_error_sent 404, fn ->
+        get(conn, Routes.currency_path(conn, :show, currency))
+      end
+    end
+  end
+
+  defp create_currency(_) do
     currency = fixture(:currency)
     %{currency: currency}
   end
