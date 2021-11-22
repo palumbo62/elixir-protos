@@ -21,12 +21,12 @@ defmodule ExerciseWeb.EmployeeController do
   end
 
   def show(conn, %{"id" => id}) do
-    employee = Employees.get_employee(id)
+    employee = Employees.get_employee!(id)
     render(conn, "show.json", employee: employee)
   end
 
   def update(conn, %{"id" => id, "employee" => employee_params}) do
-    employee = Employees.get_employee(id)
+    employee = Employees.get_employee!(id)
 
     with {:ok, %Employee{} = employee} <- Employees.update_employee(employee, employee_params) do
       render(conn, "show.json", employee: employee)
@@ -34,7 +34,7 @@ defmodule ExerciseWeb.EmployeeController do
   end
 
   def delete(conn, %{"id" => id}) do
-    employee = Employees.get_employee(id)
+    employee = Employees.get_employee!(id)
 
     with {:ok, %Employee{}} <- Employees.delete_employee(employee) do
       send_resp(conn, :no_content, "")

@@ -28,20 +28,23 @@ defmodule Exercise.Employees do
 
   ## Examples
 
-      iex> get_employee!(123)
+      iex> get_employee(123)
       %Employee{}
 
-      iex> get_employee!(456)
+      iex> get_employee(456)
       ** (Ecto.NoResultsError)
 
   """
+  def get_employee(id), do: Repo.get(Employee, id)
 
-  def get_employee(id), do: Repo.get!(Employee, id)
+  def get_employee!(id), do: Repo.get!(Employee, id)
 
   @doc """
   Creates a employee.
 
-  ## Examples
+  def get_employee!(id), do: Repo.get!(Employee, id)
+
+  # Examples
 
       iex> create_employee(%{field: value})
       {:ok, %Employee{}}
@@ -100,6 +103,10 @@ defmodule Exercise.Employees do
   """
   def delete_employee(%Employee{} = employee) do
     Repo.delete(employee)
+  end
+
+   def delete_employee!(%Employee{} = employee) do
+    Repo.delete!(employee)
   end
 
   @doc """
