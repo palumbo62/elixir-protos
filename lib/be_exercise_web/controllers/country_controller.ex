@@ -24,7 +24,7 @@ defmodule ExerciseWeb.CountryController do
     country = Countries.get_country!(id)
     render(conn, "show.json", country: country)
   end
-
+  
   def update(conn, %{"id" => id, "country" => country_params}) do
     country = Countries.get_country!(id)
 
