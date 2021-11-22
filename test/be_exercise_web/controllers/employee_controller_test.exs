@@ -3,28 +3,40 @@ defmodule ExerciseWeb.EmployeeControllerTest do
 
   alias Exercise.Employees
   alias Exercise.Employees.Employee
+  alias Exercise.Countries
+  alias Exercise.Countries.Country
+
+  @cntry_valid_attrs %{
+    code: "some code", 
+    name: "some name",
+    currency_id: 1
+  }
+
+  @curr_valid_attrs %{
+    code: "some code", 
+    name: "some name",
+    symbol: "&",
+    currency_id: 1
+  }
 
   @create_attrs %{
     country_id: 2,
-    currency_id: 2,
-    first_name: "some first name",
-    last_name: "some last name",
+    first_name: "some first_name",
+    last_name: "some last_name",
     emp_id: 100,
     job_title: "some job_title",
     salary: 120.5
   }
   @update_attrs %{
     country_id: 3,
-    currency_id: 3,
     first_name: "some updated first_name",
-    last_name: "some last name",
+    last_name: "some updated last_name",
     emp_id: 200,
     job_title: "some updated job_title",
     salary: 1456.7
   }
   @invalid_attrs %{
     country_id: nil, 
-    currency_id: nil, 
     first_name: nil, 
     last_name: nil, 
     emp_id: nil,
@@ -33,7 +45,21 @@ defmodule ExerciseWeb.EmployeeControllerTest do
   }
 
   def fixture(:employee) do
-    {:ok, employee} = Employees.create_employee(@create_attrs)
+    # Because the employee is linked to a country and currency 
+    # record in the DB, a new record for each type must be 
+    # inserted into the DB before the employee can be added
+    # to prevent contraint errors
+    {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
+    attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
+
+    IO.inspect(attrs, label: "CURR ATTRS")      
+
+    {:ok, country} = Countries.create_country(attrs)
+    attrs = Map.put(@create_attrs, :country_id, country.id)
+
+    IO.inspect(attrs, label: "CNTRY ATTRS")
+
+    {:ok, employee} = Employees.create_employee(attrs)
     employee
   end
 
@@ -50,21 +76,26 @@ defmodule ExerciseWeb.EmployeeControllerTest do
 
   describe "create employee" do
     test "renders employee when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.employee_path(conn, :create), employee: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
-
+      {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
+      attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
+      IO.inspect(attrs, label: "CURR ATTRS")      
+      
+      {:ok, country} = Countries.create_country(attrs)
+      attrs = Map.put(@create_attrs, :country_id, country.id)
+      
+      conn = post(conn, Routes.employee_path(conn, :create), employee: attrs)
+      assert %{"id" => id, "country_id" => country_id, "job_title" => job_title,
+               "last_name" => last_name, "first_name" => first_name,
+               "salary" => salary, "emp_id" => emp_id} = json_response(conn, 201)["data"]
+     
       conn = get(conn, Routes.employee_path(conn, :show, id))
-
-      assert %{
-               "id" => id,
-               "country_id" => 2,
-               "currency_id" => 2,
-               "first_name" => "some first_name",
-               "last_name" => "some last_name",
-               "emp_id" => 100,
-               "job_title" => "some job_title",
-               "salary" => 120.5
-             } = json_response(conn, 200)["data"]
+      
+      assert first_name == "some first_name"
+      assert last_name == "some last_name"
+      assert job_title == "some job_title"
+      assert salary == "120.5"
+      assert emp_id == 100
+      assert country_id == country.id
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -77,23 +108,24 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     setup [:create_employee]
 
     test "renders employee when data is valid", %{conn: conn, employee: %Employee{id: id} = employee} do
-      conn = put(conn, Routes.employee_path(conn, :update, employee), employee: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+      # Update the country id to a valid country
+      attrs = Map.put(@update_attrs, :country_id, employee.country_id)
+      conn = put(conn, Routes.employee_path(conn, :update, employee), employee: attrs)
+
+      assert %{"id" => id, "country_id" => country_id, "job_title" => job_title,
+               "last_name" => last_name, "first_name" => first_name,
+               "salary" => salary, "emp_id" => emp_id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.employee_path(conn, :show, id))
+      
+      assert first_name == "some updated first_name"
+      assert last_name == "some updated last_name"
+      assert job_title == "some updated job_title"
+      assert salary == "1456.7"
+      assert emp_id == 200
+      assert employee.country_id == country_id
 
       IO.inspect(json_response(conn, 200)["data"])
-      
-      assert %{
-               "id" => id,
-               "country_id" => 3,
-               "currency_id" => 3,
-               "first_name" => "some updated first_name",
-               "last_name" => "some updated last_name",
-               "emp_id" => 200,
-               "job_title" => "some updated job_title",
-               "salary" => 1456.7
-             } = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn, employee: employee} do
