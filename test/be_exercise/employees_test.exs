@@ -11,6 +11,7 @@ defmodule Exercise.EmployeesTest do
       code: "some code", 
       name: "some name"
     }
+    
     @valid_attrs %{
       country_id: 1, 
       first_name: "some first_name", 
