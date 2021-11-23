@@ -30,7 +30,6 @@ defmodule Exercise.Metrics do
                         symbol: cr.symbol},
               group_by: [e.job_title, c.name, cr.symbol])
 
-    IO.inspect(q, label: "QQQQQQQQQQQQ")
     Repo.all(q)
   end
 

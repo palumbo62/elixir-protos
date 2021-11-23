@@ -49,8 +49,6 @@ defmodule ExerciseWeb.CountryControllerTest do
       assert %{"id" => id, "name" => name, "code" => code, 
                "currency_id" => currency_id} = json_response(conn, 201)["data"]
 
-      conn = get(conn, Routes.country_path(conn, :show, id))
-
       assert name == "some name"
       assert code == "some code"
       assert currency_id == currency.id
@@ -69,8 +67,6 @@ defmodule ExerciseWeb.CountryControllerTest do
       conn = put(conn, Routes.country_path(conn, :update, country), country: @cntry_update_attrs)
       assert %{"name" => name, "code" => code,
                "currency_id" => currency_id} = json_response(conn, 200)["data"]
-
-      conn = get(conn, Routes.country_path(conn, :show, id))
 
       assert name == "some updated name"
       assert code == "some updated code"

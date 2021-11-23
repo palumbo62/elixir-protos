@@ -1,9 +1,6 @@
 defmodule ExerciseWeb.SalaryCountryControllerTest do
   use ExerciseWeb.ConnCase
 
-  alias Exercise.Metrics
-  alias Exercise.Metrics.SalaryCountry
-
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end

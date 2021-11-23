@@ -43,7 +43,7 @@ defmodule Exercise.EmployeesTest do
       emp_id: nil
     }
 
-    def employee_fixture(attrs \\ %{}) do
+    def employee_fixture(_attrs \\ %{}) do
       {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
       attrs = Map.put(@cntry_valid_attrs, :currency_id, currency.id)
 

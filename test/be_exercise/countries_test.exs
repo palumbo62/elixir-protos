@@ -90,7 +90,7 @@ defmodule Exercise.CountriesTest do
       name: nil,
     }
 
-    def country_fixture(attrs \\ %{}) do
+    def country_fixture(_attrs \\ %{}) do
       currency = currency_fixture()
       attrs = Map.put(@valid_attrs, :currency_id, currency.id)
 
