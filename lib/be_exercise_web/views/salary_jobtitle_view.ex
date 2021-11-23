@@ -11,8 +11,7 @@ defmodule ExerciseWeb.SalaryJobtitleView do
   end
 
   def render("salary_jobtitle.json", %{salary_jobtitle: salary_jobtitle}) do
-    %{id: salary_jobtitle.id,
-      jobtitle: salary_jobtitle.jobtitle,
+    %{jobtitle: salary_jobtitle.jobtitle,
       avg: salary_jobtitle.avg,
       name: salary_jobtitle.name,
       symbol: salary_jobtitle.symbol}

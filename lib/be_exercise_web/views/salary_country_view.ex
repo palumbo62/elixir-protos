@@ -11,8 +11,7 @@ defmodule ExerciseWeb.SalaryCountryView do
   end
 
   def render("salary_country.json", %{salary_country: salary_country}) do
-    %{id: salary_country.id,
-      min: salary_country.min,
+    %{min: salary_country.min,
       max: salary_country.max,
       avg: salary_country.avg,
       code: salary_country.code,
