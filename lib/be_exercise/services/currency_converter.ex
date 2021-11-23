@@ -6,8 +6,13 @@ defmodule Exercise.Services.CurrencyConverter do
   and will use fixed conversion rates that will most likely not be the correct ones.
   """
 
-  def convert(from, to, amount) do
-    rates()["#{to}#{from}"] * amount
+  def convert(to, from, amount) do
+    case Map.fetch(rates(), "#{to}#{from}") do
+      {:ok, v} -> 
+        {:ok, v * amount} # pass back the converted amount
+      :error -> 
+        :error  # pass back the error indication
+    end
   end
 
   defp rates do
