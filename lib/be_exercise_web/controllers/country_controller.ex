@@ -21,23 +21,32 @@ defmodule ExerciseWeb.CountryController do
   end
 
   def show(conn, %{"id" => id}) do
-    country = Countries.get_country!(id)
-    render(conn, "show.json", country: country)
+    case Countries.get_country(id) do
+      nil -> {:error, :not_found}
+      country -> render(conn, "show.json", country: country)
+    end
   end
   
   def update(conn, %{"id" => id, "country" => country_params}) do
-    country = Countries.get_country!(id)
-
-    with {:ok, %Country{} = country} <- Countries.update_country(country, country_params) do
-      render(conn, "show.json", country: country)
+    case Countries.get_country(id) do
+      nil -> {:error, :not_found}
+      country -> 
+        with {:ok, %Country{} = country} 
+          <- Countries.update_country(country, country_params) do
+            render(conn, "show.json", country: country)
+        end
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    country = Countries.get_country!(id)
-
-    with {:ok, %Country{}} <- Countries.delete_country(country) do
-      send_resp(conn, :no_content, "")
+    case Countries.get_country(id) do
+      nil -> {:error, :not_found}
+      country ->
+        with {:ok, %Country{}} 
+          <- Countries.delete_country(country) do
+            send_resp(conn, :no_content, "")
+        end
     end
   end
+
 end

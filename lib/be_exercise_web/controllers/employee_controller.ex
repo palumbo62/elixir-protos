@@ -21,23 +21,33 @@ defmodule ExerciseWeb.EmployeeController do
   end
 
   def show(conn, %{"id" => id}) do
-    employee = Employees.get_employee!(id)
-    render(conn, "show.json", employee: employee)
+    case Employees.get_employee(id) do
+      nil -> {:error, :not_found}
+      employee ->
+        render(conn, "show.json", employee: employee)
+    end
   end
 
   def update(conn, %{"id" => id, "employee" => employee_params}) do
-    employee = Employees.get_employee!(id)
-
-    with {:ok, %Employee{} = employee} <- Employees.update_employee(employee, employee_params) do
-      render(conn, "show.json", employee: employee)
+    case Employees.get_employee(id) do
+      nil -> {:error, :not_found}
+      employee ->
+        with {:ok, %Employee{} = employee} 
+          <- Employees.update_employee(employee, employee_params) do
+            render(conn, "show.json", employee: employee)
+        end
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    employee = Employees.get_employee!(id)
-
-    with {:ok, %Employee{}} <- Employees.delete_employee(employee) do
-      send_resp(conn, :no_content, "")
+    case Employees.get_employee(id) do
+      nil -> {:error, :not_found}
+      employee ->
+        with {:ok, %Employee{}} 
+          <- Employees.delete_employee(employee) do
+            send_resp(conn, :no_content, "")
+        end
     end
   end
+
 end

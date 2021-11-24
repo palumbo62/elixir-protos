@@ -21,23 +21,33 @@ defmodule ExerciseWeb.CurrencyController do
   end
 
   def show(conn, %{"id" => id}) do
-    currency = Countries.get_currency!(id)
-    render(conn, "show.json", currency: currency)
+    case Countries.get_currency(id) do
+      nil -> {:error, :not_found}
+      currency -> 
+        render(conn, "show.json", currency: currency)
+    end
   end
 
   def update(conn, %{"id" => id, "currency" => currency_params}) do
-    currency = Countries.get_currency!(id)
-
-    with {:ok, %Currency{} = currency} <- Countries.update_currency(currency, currency_params) do
-      render(conn, "show.json", currency: currency)
+    case Countries.get_currency(id) do
+      nil -> {:error, :not_found}
+      currency ->
+        with {:ok, %Currency{} = currency} 
+          <- Countries.update_currency(currency, currency_params) do
+          render(conn, "show.json", currency: currency)
+        end
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    currency = Countries.get_currency!(id)
-
-    with {:ok, %Currency{}} <- Countries.delete_currency(currency) do
-      send_resp(conn, :no_content, "")
+    case Countries.get_currency(id) do
+      nil -> {:error, :not_found}
+      currency ->
+        with {:ok, %Currency{}} 
+          <- Countries.delete_currency(currency) do
+            send_resp(conn, :no_content, "")
+        end
     end
   end
-end
+
+end 
