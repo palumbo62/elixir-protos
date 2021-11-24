@@ -35,6 +35,8 @@ defmodule Exercise.Countries do
       ** (Ecto.NoResultsError)
 
   """
+  def get_currency(id), do: Repo.get(Currency, id)
+
   def get_currency!(id), do: Repo.get!(Currency, id)
 
   @doc """
