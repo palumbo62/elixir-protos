@@ -11,7 +11,7 @@ defmodule ExerciseWeb.SalaryJobtitleController do
   end
 
   def show(conn, %{"id" => id}) do
-    salary_jobtitle = Metrics.get_salary_jobtitle!(id)
+    salary_jobtitle = Metrics.get_salary_by_jobtitle(id)
     render(conn, "show.json", salary_jobtitle: salary_jobtitle)
   end
 end

@@ -11,6 +11,9 @@ defmodule ExerciseWeb.CurrencyView do
   end
 
   def render("currency.json", %{currency: currency}) do
-    %{id: currency.id, code: currency.code, name: currency.name, symbol: currency.symbol}
+    %{id: currency.id, 
+      code: currency.code, 
+      name: currency.name, 
+      symbol: currency.symbol}
   end
 end

@@ -7,13 +7,13 @@ defmodule ExerciseWeb.SalaryCountryView do
   end
 
   def render("show.json", %{salary_country: salary_country}) do
-    %{data: render_one(salary_country, SalaryCountryView, "salary_country.json")}
+    %{data: render_many(salary_country, SalaryCountryView, "salary_country.json")}
   end
 
   def render("salary_country.json", %{salary_country: salary_country}) do
-    %{min: salary_country.min,
-      max: salary_country.max,
-      avg: salary_country.avg,
+    %{min: Decimal.round(salary_country.min, 2),
+      max: Decimal.round(salary_country.max, 2),
+      avg: Decimal.round(salary_country.avg, 2),
       code: salary_country.code,
       crcode: salary_country.crcode}
   end

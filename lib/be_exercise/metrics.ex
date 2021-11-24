@@ -47,7 +47,22 @@ defmodule Exercise.Metrics do
       ** (Ecto.NoResultsError)
 
   """
-  def get_salary_jobtitle!(id), do: Repo.get!(SalaryJobtitle, id)
+  def get_salary_by_jobtitle(id) do
+    q = from(e in "employees",
+            join: c in "countries", 
+            join: cr in "currencies",
+            on: e.country_id == c.id,
+            on: c.currency_id == cr.id,  
+            where: e.job_title == ^id,  
+            select: %Exercise.Metrics.SalaryJobtitle{
+                      jobtitle: e.job_title, 
+                      avg: avg(e.salary), 
+                      name: c.name, 
+                      symbol: cr.symbol},
+            group_by: [e.job_title, c.name, cr.symbol])
+
+   Repo.all(q)
+  end
   
   @doc """
   Returns the list of salary_countries.
@@ -64,10 +79,12 @@ defmodule Exercise.Metrics do
               join: cr in "currencies",
               on: e.country_id == c.id,
               on: c.currency_id == cr.id,    
-              select: %Exercise.Metrics.SalaryCountry{code: c.code, 
+              select: %Exercise.Metrics.SalaryCountry{
+                        code: c.code, 
                         crcode: cr.code, 
                         avg: avg(e.salary), 
-                        min: min(e.salary), max: max(e.salary)},
+                        min: min(e.salary), 
+                        max: max(e.salary)},
               group_by: [c.code, cr.code])
     Repo.all(q)
   end
@@ -86,6 +103,21 @@ defmodule Exercise.Metrics do
       ** (Ecto.NoResultsError)
 
   """
-  def get_salary_country!(id), do: Repo.get!(SalaryCountry, id)
+  def get_salary_by_country(id) do
+    q = from(e in "employees",
+              join: c in "countries", 
+              join: cr in "currencies",
+              on: e.country_id == c.id,
+              on: c.currency_id == cr.id,    
+              where: c.code == ^id,
+              select: %Exercise.Metrics.SalaryCountry{
+                        code: c.code, 
+                        crcode: cr.code, 
+                        avg: avg(e.salary), 
+                        min: min(e.salary), 
+                        max: max(e.salary)},
+              group_by: [c.code, cr.code])
+    Repo.all(q)
+  end
 
 end

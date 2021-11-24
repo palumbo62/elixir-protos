@@ -11,7 +11,7 @@ defmodule ExerciseWeb.SalaryCountryController do
   end
 
   def show(conn, %{"id" => id}) do
-    salary_country = Metrics.get_salary_country!(id)
+    salary_country = Metrics.get_salary_by_country(id)
     render(conn, "show.json", salary_country: salary_country)
   end
 

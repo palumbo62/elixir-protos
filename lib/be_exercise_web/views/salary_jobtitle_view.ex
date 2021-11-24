@@ -7,12 +7,12 @@ defmodule ExerciseWeb.SalaryJobtitleView do
   end
 
   def render("show.json", %{salary_jobtitle: salary_jobtitle}) do
-    %{data: render_one(salary_jobtitle, SalaryJobtitleView, "salary_jobtitle.json")}
+    %{data: render_many(salary_jobtitle, SalaryJobtitleView, "salary_jobtitle.json")}
   end
 
   def render("salary_jobtitle.json", %{salary_jobtitle: salary_jobtitle}) do
     %{jobtitle: salary_jobtitle.jobtitle,
-      avg: salary_jobtitle.avg,
+      avg: Decimal.round(salary_jobtitle.avg, 2),
       name: salary_jobtitle.name,
       symbol: salary_jobtitle.symbol}
   end

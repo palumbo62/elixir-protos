@@ -16,8 +16,7 @@ defmodule ExerciseWeb.EmployeeView do
       last_name: employee.last_name,
       emp_id: employee.emp_id,
       job_title: employee.job_title,
-      salary: employee.salary,
-      country_id: employee.country_id
-    }
+      salary: Decimal.round(employee.salary, 2),
+      country_id: employee.country_id}
   end
 end

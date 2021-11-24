@@ -18,8 +18,8 @@ defmodule ExerciseWeb.Router do
 
   scope "/metrics", ExerciseWeb do
     pipe_through :admin
-    resources "/salary_countries", SalaryCountryController, only: [:index]
-    resources "/salary_jobtitles", SalaryJobtitleController, only: [:index]
+    resources "/salary_countries", SalaryCountryController, only: [:index, :show]
+    resources "/salary_jobtitles", SalaryJobtitleController, only: [:index, :show]
   end    
 
   # Enables LiveDashboard only for development
