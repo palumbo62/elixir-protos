@@ -38,6 +38,44 @@
 					"response": []
 				},
 				{
+					"name": "Get Currency by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/currencies/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"currencies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Currency",
 					"request": {
 						"method": "POST",
@@ -101,44 +139,6 @@
 					"response": []
 				},
 				{
-					"name": "Get Currency by ID",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:4000/api/currencies/:id",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"currencies",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "8"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete Currency by ID",
 					"request": {
 						"method": "DELETE",
@@ -192,6 +192,44 @@
 							"path": [
 								"api",
 								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Country by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/countries/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"countries",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
 							]
 						}
 					},
@@ -261,44 +299,6 @@
 					"response": []
 				},
 				{
-					"name": "Get Country by ID",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:4000/api/countries/:id",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"countries",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "9"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete Country by ID",
 					"request": {
 						"method": "DELETE",
@@ -359,62 +359,6 @@
 					"response": []
 				},
 				{
-					"name": "Create New Employee",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway\",\r\n    \"emp_id\": 10010,\r\n    \"job_title\": \"Driver\",\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:4000/api/employees",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"employees"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Employee",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/api/employees/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"employees",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "3"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Employee by ID",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -453,13 +397,42 @@
 					"response": []
 				},
 				{
-					"name": "Update Country Copy",
+					"name": "Create New Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway\",\r\n    \"emp_id\": 10010,\r\n    \"job_title\": \"Driver\",\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Country",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 12000.00,\r\n    \"currency_id\": 5,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"currency_id\": 5,\r\n    \"country_id\": 2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -486,6 +459,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/employees/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -493,7 +493,7 @@
 			"name": "Metrics",
 			"item": [
 				{
-					"name": "Countries Salary Metrics",
+					"name": "Country Salary Metrics",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -512,7 +512,52 @@
 					"response": []
 				},
 				{
+					"name": "Country Salary Metrics by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/metrics/salary_countries/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"metrics",
+								"salary_countries",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "USA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Jobtitle Salary Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/metrics/salary_jobtitles",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"metrics",
+								"salary_jobtitles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jobtitle Salary Metrics by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
