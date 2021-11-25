@@ -6,8 +6,6 @@ defmodule Exercise.Metrics do
   import Ecto.Query, warn: false
   alias Exercise.Repo
 
-  alias Exercise.Metrics.SalaryJobtitle
-
   @doc """
   Returns the list of salary_jobtitles.
 
