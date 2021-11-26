@@ -70,7 +70,7 @@ defmodule ExerciseWeb.CountryControllerTest do
 
       assert name == "some updated name"
       assert code == "some updated code"
-      assert currency_id = country.currency_id
+      assert currency_id == country.currency_id
     end
 
     test "renders errors when data is invalid", %{conn: conn, country: country} do
