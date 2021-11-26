@@ -86,9 +86,8 @@ defmodule ExerciseWeb.CountryControllerTest do
       conn = delete(conn, Routes.country_path(conn, :delete, country))
       assert response(conn, 204)
 
-      assert_error_sent 404, fn ->
-        get(conn, Routes.country_path(conn, :show, country))
-      end
+      data = get(conn, Routes.country_path(conn, :show, country))
+      assert country.id == String.to_integer(data.params["id"])
     end
   end
 

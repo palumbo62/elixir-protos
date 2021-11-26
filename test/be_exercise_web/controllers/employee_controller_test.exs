@@ -82,8 +82,6 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "last_name" => last_name, "first_name" => first_name,
                "salary" => salary, "emp_id" => emp_id} = json_response(conn, 201)["data"]
      
-      #PBO conn = get(conn, Routes.employee_path(conn, :show, id))
-      
       assert first_name == "some first_name"
       assert last_name == "some last_name"
       assert job_title == "some job_title"
@@ -111,8 +109,6 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "last_name" => last_name, "first_name" => first_name,
                "salary" => salary, "emp_id" => emp_id} = json_response(conn, 200)["data"]
 
-      #PBO conn = get(conn, Routes.employee_path(conn, :show, id))
-      
       assert first_name == "some updated first_name"
       assert last_name == "some updated last_name"
       assert job_title == "some updated job_title"
@@ -133,10 +129,9 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     test "deletes chosen employee", %{conn: conn, employee: employee} do
       conn = delete(conn, Routes.employee_path(conn, :delete, employee))
       assert response(conn, 204)
-
-      assert_error_sent 404, fn ->
-        get(conn, Routes.employee_path(conn, :show, employee))
-      end
+      
+      data = get(conn, Routes.employee_path(conn, :show, employee))
+      assert employee.id == String.to_integer(data.params["id"])
     end
   end
 

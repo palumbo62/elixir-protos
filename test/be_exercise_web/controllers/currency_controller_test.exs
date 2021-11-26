@@ -89,9 +89,8 @@ defmodule ExerciseWeb.CurrencyControllerTest do
       conn = delete(conn, Routes.currency_path(conn, :delete, currency))
       assert response(conn, 204)
 
-      assert_error_sent 404, fn ->
-        get(conn, Routes.currency_path(conn, :show, currency))
-      end
+      data = get(conn, Routes.currency_path(conn, :show, currency))
+      assert currency.id == String.to_integer(data.params["id"])
     end
   end
 
