@@ -18,6 +18,7 @@ defmodule Exercise.Countries.Country do
     |> validate_number(:currency_id, greater_than: 0)   
     |> validate_length(:code, is: 3)
     |> foreign_key_constraint(:currency_id)   
-    |> unique_constraint([:code, :name])
+    |> unique_constraint(:code)
+    |> unique_constraint(:name)
   end
 end
