@@ -46,12 +46,15 @@ defmodule Exercise.Metrics do
 
   """
   def get_salary_by_jobtitle(id) do
+    match_it = "%#{id}%"
+
     q = from(e in "employees",
             join: c in "countries", 
             join: cr in "currencies",
             on: e.country_id == c.id,
             on: c.currency_id == cr.id,  
-            where: e.job_title == ^id,  
+            #where: e.job_title == ^id,  
+            where: ilike(e.job_title, ^match_it),  
             select: %Exercise.Metrics.SalaryJobtitle{
                       jobtitle: e.job_title, 
                       avg: avg(e.salary), 
