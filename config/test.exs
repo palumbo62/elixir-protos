@@ -7,7 +7,7 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :be_exercise, Exercise.Repo,
   username: System.get_env("POSTGRES_USER", "postgres"),
-  password: System.get_env("POSTGRES_PASSWORD", "Dur@ngler036264"),
+  password: System.get_env("POSTGRES_PASSWORD", "postgres"),
   database: "be_exercise_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: System.get_env("POSTGRES_HOST", "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox
