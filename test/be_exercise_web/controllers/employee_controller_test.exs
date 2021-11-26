@@ -24,7 +24,7 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     last_name: "some last_name",
     emp_id: 100,
     job_title: "some job_title",
-    salary: 120.5
+    salary: 120.50
   }
   @update_attrs %{
     country_id: 3,
@@ -32,7 +32,7 @@ defmodule ExerciseWeb.EmployeeControllerTest do
     last_name: "some updated last_name",
     emp_id: 200,
     job_title: "some updated job_title",
-    salary: 1456.7
+    salary: 1456.70
   }
   @invalid_attrs %{
     country_id: nil, 
@@ -82,12 +82,12 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "last_name" => last_name, "first_name" => first_name,
                "salary" => salary, "emp_id" => emp_id} = json_response(conn, 201)["data"]
      
-      conn = get(conn, Routes.employee_path(conn, :show, id))
+      #PBO conn = get(conn, Routes.employee_path(conn, :show, id))
       
       assert first_name == "some first_name"
       assert last_name == "some last_name"
       assert job_title == "some job_title"
-      assert salary == "120.5"
+      assert salary == "120.50"
       assert emp_id == 100
       assert country_id == country.id
     end
@@ -101,7 +101,8 @@ defmodule ExerciseWeb.EmployeeControllerTest do
   describe "update employee" do
     setup [:create_employee]
 
-    test "renders employee when data is valid", %{conn: conn, employee: %Employee{id: id} = employee} do
+    test "renders employee when data is valid", %{conn: conn, employee: %Employee{id: id} 
+                                                  = employee} do
       # Update the country id to a valid country
       attrs = Map.put(@update_attrs, :country_id, employee.country_id)
       conn = put(conn, Routes.employee_path(conn, :update, employee), employee: attrs)
@@ -110,12 +111,12 @@ defmodule ExerciseWeb.EmployeeControllerTest do
                "last_name" => last_name, "first_name" => first_name,
                "salary" => salary, "emp_id" => emp_id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, Routes.employee_path(conn, :show, id))
+      #PBO conn = get(conn, Routes.employee_path(conn, :show, id))
       
       assert first_name == "some updated first_name"
       assert last_name == "some updated last_name"
       assert job_title == "some updated job_title"
-      assert salary == "1456.7"
+      assert salary == "1456.70"
       assert emp_id == 200
       assert employee.country_id == country_id
     end
