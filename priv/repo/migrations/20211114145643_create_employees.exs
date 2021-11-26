@@ -13,8 +13,8 @@ defmodule Exercise.Repo.Migrations.CreateEmployees do
       timestamps()
     end
 
-    create unique_index(:employees, [:emp_id, :last_name])
-    create unique_constraint(:country_id)
+    create unique_index(:employees, [:emp_id])
+    create unique_index(:employees, [:last_name])
   end
 end
   

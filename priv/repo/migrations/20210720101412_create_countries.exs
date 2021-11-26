@@ -10,6 +10,8 @@ defmodule Exercise.Repo.Migrations.CreateCountries do
       timestamps()
     end
 
-    create unique_index(:countries, :code)
+    create unique_index(:countries, [:name])
+    create unique_index(:countries, [:code])
+    create index(:countries, [:currency_id])  
   end
 end
