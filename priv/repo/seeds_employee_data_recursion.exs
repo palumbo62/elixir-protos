@@ -32,12 +32,14 @@ defmodule EmployeeData do
     end
   end
 
-  # Function to generate the job_title file and build a list job titles
+  # Function to generate the job_title file and build a list of 100 random job titles
   def generate_job_titles do
     with {:ok, job_titles} = File.read("./priv/data/job_titles.txt") do 
       job_titles
       |> String.split("\r\n", trim: true) 
-      #|> IO.inspect
+      |> Enum.shuffle()
+      |> Enum.slice(%Range{first: 1, last: 100, step: 1})
+      |> IO.inspect
     end
   end
 

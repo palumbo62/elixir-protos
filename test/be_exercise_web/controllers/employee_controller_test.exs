@@ -7,13 +7,13 @@ defmodule ExerciseWeb.EmployeeControllerTest do
   alias Exercise.Countries.Country
 
   @cntry_valid_attrs %{
-    code: "some code", 
+    code: "ABC", 
     name: "some name",
     currency_id: 1
   }
 
   @curr_valid_attrs %{
-    code: "some code", 
+    code: "ABC", 
     name: "some name",
     symbol: "&",
   }

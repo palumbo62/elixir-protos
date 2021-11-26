@@ -3,15 +3,13 @@ defmodule Exercise.Repo.Migrations.CreateCountries do
 
   def change do
     create table(:countries) do
-      add :name, :string
       add :code, :string
-      add :currency_id, references(:currencies, on_delete: :do_nothing)
+      add :name, :string
+      add :currency_id, references(:currencies, on_delete: :nilify_all)
 
       timestamps()
     end
 
-    create unique_index(:countries, [:name])
-    create unique_index(:countries, [:code])
-    create index(:countries, [:currency_id])
+    create unique_index(:countries, :code)
   end
 end

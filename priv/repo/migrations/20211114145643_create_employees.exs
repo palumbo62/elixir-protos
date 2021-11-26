@@ -8,15 +8,13 @@ defmodule Exercise.Repo.Migrations.CreateEmployees do
       add :job_title, :string
       add :salary, :numeric
       add :emp_id, :integer
-      add :country_id, references(:countries, on_delete: :do_nothing)
+      add :country_id, references(:countries, on_delete: :nothing)
 
       timestamps()
     end
 
-    create unique_index(:employees, [:last_name])
-    create unique_index(:employees, [:emp_id])
-
-    create index(:employees, [:country_id])
+    create unique_index(:employees, [:emp_id, :last_name])
+    create unique_constraint(:country_id)
   end
 end
   

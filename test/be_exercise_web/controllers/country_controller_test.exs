@@ -5,20 +5,20 @@ defmodule ExerciseWeb.CountryControllerTest do
   alias Exercise.Countries.Country
 
   @cntry_valid_attrs %{
-    code: "some code",
+    code: "ABC",
     name: "some name",
     currency_id: 1
   }
   @cntry_update_attrs %{
-    code: "some updated code",
+    code: "DEF",
     name: "some updated name",
   }
   @invalid_attrs %{code: nil, name: nil}
   
   @curr_valid_attrs %{
-    code: "some code", 
+    code: "ABC", 
     name: "some name", 
-    symbol: "some symbol"}
+    symbol: "#"}
 
   def fixture(:country) do
     {:ok, currency} = Countries.create_currency(@curr_valid_attrs)
@@ -49,8 +49,8 @@ defmodule ExerciseWeb.CountryControllerTest do
       assert %{"id" => id, "name" => name, "code" => code, 
                "currency_id" => currency_id} = json_response(conn, 201)["data"]
 
+      assert code == "ABC"
       assert name == "some name"
-      assert code == "some code"
       assert currency_id == currency.id
     end
 
@@ -68,8 +68,8 @@ defmodule ExerciseWeb.CountryControllerTest do
       assert %{"name" => name, "code" => code,
                "currency_id" => currency_id} = json_response(conn, 200)["data"]
 
+      assert code == "DEF"
       assert name == "some updated name"
-      assert code == "some updated code"
       assert currency_id == country.currency_id
     end
 

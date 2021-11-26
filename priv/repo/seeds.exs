@@ -28,8 +28,8 @@ currency_data = [
   ["New Zealand Dollar", "NZD", "$"],
   ["United States Dollar", "USD", "$"],
   ["Canadian Dollar", "CAD", "$"],
-  ["Swiss Franc", "CHF", "¥"],
-  ["Japanese Yen", "JPY", "CHF"]
+  ["Swiss Franc", "CHF", "CHF"],
+  ["Japanese Yen", "JPY", "¥"]
 ]
 
 for currency <- currency_data do

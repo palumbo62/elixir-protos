@@ -7,13 +7,13 @@ defmodule Exercise.CountriesTest do
     alias Exercise.Countries.Currency
 
     @curr_valid_attrs %{
-      code: "some code", 
+      code: "ABC", 
       name: "some name", 
-      symbol: "some symbol"}
+      symbol: "#"}
     @curr_update_attrs %{
-      code: "some updated code",
+      code: "DEF",
       name: "some updated name",
-      symbol: "some updated symbol"
+      symbol: "$"
     }
     @curr_invalid_attrs %{code: nil, name: nil, symbol: nil}
 
@@ -38,9 +38,9 @@ defmodule Exercise.CountriesTest do
 
     test "create_currency/1 with valid data creates a currency" do
       assert {:ok, %Currency{} = currency} = Countries.create_currency(@curr_valid_attrs)
-      assert currency.code == "some code"
+      assert currency.code == "ABC"
       assert currency.name == "some name"
-      assert currency.symbol == "some symbol"
+      assert currency.symbol == "#"
     end
 
     test "create_currency/1 with invalid data returns error changeset" do
@@ -50,9 +50,9 @@ defmodule Exercise.CountriesTest do
     test "update_currency/2 with valid data updates the currency" do
       currency = currency_fixture()
       assert {:ok, %Currency{} = currency} = Countries.update_currency(currency, @curr_update_attrs)
-      assert currency.code == "some updated code"
+      assert currency.code == "DEF"
       assert currency.name == "some updated name"
-      assert currency.symbol == "some updated symbol"
+      assert currency.symbol == "$"
     end
 
     test "update_currency/2 with invalid data returns error changeset" do
@@ -77,12 +77,12 @@ defmodule Exercise.CountriesTest do
     alias Exercise.Countries.Country
 
     @valid_attrs %{
-      code: "some code", 
+      code: "ABC", 
       name: "some name",
       currency_id: 1
     }
     @update_attrs %{
-      code: "some updated code", 
+      code: "DEF", 
       name: "some updated name",
     }
     @invalid_attrs %{
@@ -112,7 +112,7 @@ defmodule Exercise.CountriesTest do
 
     test "create_country/1 with valid data creates a country" do
       country = country_fixture()
-      assert country.code == "some code"
+      assert country.code == "ABC"
       assert country.name == "some name"
     end
 
@@ -123,7 +123,7 @@ defmodule Exercise.CountriesTest do
     test "update_country/2 with valid data updates the country" do
       country = country_fixture()
       assert {:ok, %Country{} = country} = Countries.update_country(country, @update_attrs)
-      assert country.code == "some updated code"
+      assert country.code == "DEF"
       assert country.name == "some updated name"
     end
 
