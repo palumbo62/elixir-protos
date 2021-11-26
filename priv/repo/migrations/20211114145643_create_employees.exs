@@ -8,7 +8,7 @@ defmodule Exercise.Repo.Migrations.CreateEmployees do
       add :job_title, :string
       add :salary, :numeric
       add :emp_id, :integer
-      add :country_id, references(:countries, on_delete: :nothing)
+      add :country_id, references(:countries, on_delete: :nilify_all)
 
       timestamps()
     end
