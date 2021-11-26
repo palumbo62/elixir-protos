@@ -14,7 +14,6 @@ defmodule Exercise.Repo.Migrations.CreateEmployees do
     end
 
     create unique_index(:employees, [:emp_id])
-    create unique_index(:employees, [:last_name])
   end
 end
   
