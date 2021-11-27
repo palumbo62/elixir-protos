@@ -68,7 +68,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "100"
+									"value": "1"
 								}
 							]
 						}
@@ -106,7 +106,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "8"
+									"value": "100"
 								}
 							]
 						}
@@ -204,6 +204,62 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
+							"raw": "{ \r\n    \"currency\": {\r\n        \"code\": \"AAA\",\r\n        \"name\": \"XZXZ Currency\",\r\n        \"symbol\": \"1234\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/currencies",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"currencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Currency Inv Name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"currency\": {\r\n        \"code\": \"XZZ\",\r\n        \"name\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n        \"symbol\": \"##\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/currencies",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"currencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Currency Inv Sym",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
 							"raw": "{ \r\n    \"currency\": {\r\n        \"code\": \"AAA\",\r\n        \"name\": \"XZXZ Currency\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
@@ -262,6 +318,41 @@
 				},
 				{
 					"name": "Update Currency Inv Code",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"currency\": {\r\n        \"code\": \"BBBB\",\r\n        \"symbol\": \"&\",\r\n        \"name\": \"*************************************************************\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/currencies/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"currencies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Currency Inv Name",
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -563,7 +654,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"country\": {\r\n    \"code\": \"DDD\",\r\n    \"name\": \"DDD-ZZZZZZ\",\r\n    \"currency_id\": 5\r\n    }\r\n}",
+							"raw": "{ \r\n    \"country\": {\r\n    \"code\": \"FFF\",\r\n    \"name\": \"DDD-ZZZXZZZ\",\r\n    \"currency_id\": 100\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -586,6 +677,34 @@
 				},
 				{
 					"name": "Create Country No Name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"country\": {\r\n    \"code\": \"XXX\",\r\n    \"currency_id\": 5,\r\n    \"name\": \"****************************************************************\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/countries",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Country Inv Name",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -668,7 +787,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "19"
+									"value": "1"
 								}
 							]
 						}
@@ -682,7 +801,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"country\": {\r\n        \"currency_id\": 8\r\n    }\r\n}",
+							"raw": "{ \r\n    \"country\": {\r\n        \"currency_id\": 5\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -703,7 +822,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "19"
+									"value": "1"
 								}
 							]
 						}
@@ -773,7 +892,42 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "13"
+									"value": "14"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Country by Inv ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"country\": \r\n    {\r\n        \"id\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/countries/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"countries",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "100"
 								}
 							]
 						}
@@ -1056,13 +1210,13 @@
 					"response": []
 				},
 				{
-					"name": "Create New Employee No Last Name",
+					"name": "Create New Employee Inv Job Title",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"emp_id\": 10010,\r\n    \"job_title\": \"Driver\",\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\r\n    \"last_name\": \"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",\r\n    \"emp_id\": 10010,\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2,\r\n    \"job_title\": \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1085,13 +1239,13 @@
 					"response": []
 				},
 				{
-					"name": "Create New Employee No First Name",
+					"name": "Create New Employee Inv Last Name",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"employee\": {\r\n    \"last_name\": \"Elway\",\r\n    \"emp_id\": 10010,\r\n    \"job_title\": \"Driver\",\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway\",\r\n    \"emp_id\": 10010,\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2,\r\n    \"job_title\": \"****************************************************\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1120,7 +1274,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"id\": 100,\r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"currency_id\": 44,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"currency_id\": 44,\r\n    \"country_id\": 2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1155,7 +1309,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"id\": 100,\r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 0,\r\n    \"currency_id\": 44,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 0,\r\n    \"currency_id\": 44,\r\n    \"country_id\": 2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1190,7 +1344,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"id\": 100,\r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"country_id\": -1\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"country_id\": -1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1225,7 +1379,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"id\": 100,\r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"\",\r\n    \"salary\": 122000.00,\r\n    \"country_id\": 2\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Elway II\",\r\n    \"job_title\": \"\",\r\n    \"salary\": 122000.00,\r\n    \"country_id\": 2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1260,42 +1414,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"id\": 100,\r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"currency_id\": 44,\r\n    \"country_id\": 2\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:4000/api/employees/:id",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"employees",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "6"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Employee Inv CID",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n    \"id\": 100,\r\n    \"employee\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"\",\r\n    \"job_title\": \"Bus Driver\",\r\n    \"salary\": 122000.00,\r\n    \"currency_id\": 44,\r\n    \"country_id\": -1\r\n    }\r\n}",
+							"raw": "{ \r\n    \"employee\": {\r\n    \"first_name\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\r\n    \"last_name\": \"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",\r\n    \"emp_id\": 10010,\r\n    \"salary\": 45611.99,\r\n    \"country_id\": 2,\r\n    \"job_title\": \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1370,7 +1489,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "3"
+									"value": "20000"
 								}
 							]
 						}
@@ -1420,7 +1539,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "CHE"
+									"value": "USA"
 								}
 							]
 						}
@@ -1465,7 +1584,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "acc",
+									"value": "eng",
 									"description": "Enter a job title - can be partial and is case-insensitive"
 								}
 							]
