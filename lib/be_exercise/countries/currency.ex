@@ -16,6 +16,7 @@ defmodule Exercise.Countries.Currency do
     |> cast(attrs, [:code, :name, :symbol])
     |> validate_required([:code, :name, :symbol])
     |> validate_length(:code, is: 3)
+    |> validate_length(:name, min: 1, max: 50)
     |> validate_length(:symbol, min: 1, max: 3)
     |> unique_constraint(:code)
   end

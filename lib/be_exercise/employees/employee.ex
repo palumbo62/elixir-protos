@@ -25,6 +25,9 @@ defmodule Exercise.Employees.Employee do
     |> validate_number(:emp_id, greater_than: 0)
     |> validate_number(:salary, greater_than: 0)      
     |> validate_number(:country_id, greater_than: 0)  
+    |> validate_length(:first_name, min: 1, max: 30)
+    |> validate_length(:last_name, min: 1, max: 40)
+    |> validate_length(:job_title, min: 1, max: 40)
     |> foreign_key_constraint(:country_id) 
     |> unique_constraint(:emp_id) 
   end
