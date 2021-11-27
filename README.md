@@ -116,4 +116,4 @@ This section is for you to fill in with any decisions you made that may be relev
 
 Robert Palumbo:  This is a link to a shared Google Document that I created to track my development notes.  Please click on the following link to reference this document.
 
-[Click Here to View the Document](https://docs.google.com/document/d/1MVyZY4zlcPH9KKfVycRqLL1Cm_kluynBhXkG4F_N1JA/edit?usp=sharing)
+[Click Here to Robert Palumbo Implementation Notes](https://docs.google.com/document/d/1MVyZY4zlcPH9KKfVycRqLL1Cm_kluynBhXkG4F_N1JA/edit?usp=sharing)
