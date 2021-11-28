@@ -1,4 +1,9 @@
 defmodule ExerciseWeb.SalaryJobtitleControllerTest do
+  @moduledoc """
+    The SalaryJobtitleControllerTest module is used to test the 
+    SalaryJobtitle context by executing a defined set of function 
+    which exercise the CRUD functionality for both.
+  """     
   use ExerciseWeb.ConnCase
 
   setup %{conn: conn} do

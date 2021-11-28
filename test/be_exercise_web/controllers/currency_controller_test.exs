@@ -1,4 +1,9 @@
 defmodule ExerciseWeb.CurrencyControllerTest do
+  @moduledoc """
+    The CurrencyControllerTest module is used to test the Countries 
+    context by executing a defined set of function which exercise
+    the CRUD functionality for both.
+  """   
   use ExerciseWeb.ConnCase
 
   alias Exercise.Countries

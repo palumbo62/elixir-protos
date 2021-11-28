@@ -1,8 +1,13 @@
 defmodule Exercise.Countries do
   @moduledoc """
-  The Countries context.
-  """
+    The Countries context which implement a set of helper
+    functions used to interface to the attached database
+    using the Repo module.
 
+    This module also includes the Currencies context as 
+    both contexts are tightly coupled.  This context provides
+    a similar set of helper functions as with Countries.
+  """
   import Ecto.Query, warn: false
   alias Exercise.Repo
 

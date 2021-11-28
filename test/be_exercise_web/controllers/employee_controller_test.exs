@@ -1,4 +1,9 @@
 defmodule ExerciseWeb.EmployeeControllerTest do
+  @moduledoc """
+    The EmployeeControllerTest module is used to test the Employees 
+    context by executing a defined set of function which exercise
+    the CRUD functionality for both.
+  """   
   use ExerciseWeb.ConnCase
 
   alias Exercise.Employees

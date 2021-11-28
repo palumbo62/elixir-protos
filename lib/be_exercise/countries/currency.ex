@@ -1,4 +1,10 @@
 defmodule Exercise.Countries.Currency do
+  @moduledoc """
+    Defines the schema and changeset used to map 
+    currency data between the application and the
+    database, as well as, to validate the data
+    against the specified changeset pipeline. 
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

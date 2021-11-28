@@ -1,4 +1,5 @@
 defmodule Exercise.MetricsTest do
+  @moduledoc false
   use Exercise.DataCase
 
   #alias Exercise.Metrics

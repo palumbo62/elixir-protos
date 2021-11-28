@@ -1,8 +1,9 @@
 defmodule Exercise.Employees do
   @moduledoc """
-  The Employees context.
+    The Employees context which implement a set of helper
+    functions used to interface to the attached database
+    using the Repo module.
   """
-
   import Ecto.Query, warn: false
   alias Exercise.Repo
 

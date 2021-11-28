@@ -1,4 +1,9 @@
 defmodule Exercise.CountriesTest do
+  @moduledoc """
+    The CountriesTest module is used to test the Countries and 
+    Currencies contexts by executing a defined set of function 
+    which exercise the CRUD functionality for both.
+  """   
   use Exercise.DataCase
 
   alias Exercise.Countries

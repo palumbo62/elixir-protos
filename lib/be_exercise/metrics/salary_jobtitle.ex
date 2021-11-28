@@ -1,4 +1,8 @@
 defmodule Exercise.Metrics.SalaryJobtitle do
+  @moduledoc """
+    Defines changeset used to validate the salary
+    data against the specified changeset pipeline. 
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

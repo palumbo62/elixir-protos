@@ -1,4 +1,7 @@
 defmodule ExerciseWeb.ErrorViewTest do
+  @moduledoc """
+  Conveniences for translating and building template messages.
+  """  
   use ExerciseWeb.ConnCase, async: true
 
   # Bring render/3 and render_to_string/3 for testing custom views

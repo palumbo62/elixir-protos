@@ -1,4 +1,9 @@
 defmodule ExerciseWeb.SalaryCountryControllerTest do
+  @moduledoc """
+    The SalaryCountryControllerTest module is used to test the 
+    SalaryCountry context by executing a defined set of function 
+    which exercise the CRUD functionality for both.
+  """   
   use ExerciseWeb.ConnCase
 
   setup %{conn: conn} do

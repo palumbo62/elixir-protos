@@ -1,8 +1,11 @@
 defmodule Exercise.Metrics do
   @moduledoc """
-  The Metrics context.
+  The Metrics context which implement a set of helper
+  functions used to interface to the attached database
+  using the Repo module.  These functions define the
+  queries used to obtains salary metrics based on either
+  country or job title.
   """
-
   import Ecto.Query, warn: false
   alias Exercise.Repo
 

@@ -1,4 +1,9 @@
 defmodule Exercise.EmployeesTest do
+  @moduledoc """
+    The EmployeesTest module is used to test the Employees 
+    context by executing a defined set of function which 
+    exercise the CRUD functionality for both.
+  """   
   use Exercise.DataCase
  
   describe "employees" do
