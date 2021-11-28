@@ -1,4 +1,5 @@
 defmodule ExerciseWeb.Endpoint do
+  @moduledoc false
   use Phoenix.Endpoint, otp_app: :be_exercise
 
   # The session will be stored in the cookie and signed,

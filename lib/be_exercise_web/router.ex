@@ -1,4 +1,16 @@
 defmodule ExerciseWeb.Router do
+   @moduledoc """
+    A module providing scope, pipeline, and route definitions for each
+    application controller.
+
+    Refer to (https://hexdocs.pm/phoenix/Phoenix.Router.html) for detailed
+    examples on routing configuration.
+
+    Run the following command from the main application directory to
+    obtain a listing of all supported routes
+
+      `$ mix phx.routes`
+  """
   use ExerciseWeb, :router
 
   pipeline :api do
